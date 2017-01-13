@@ -1,15 +1,15 @@
 module Prettify
   (
-    Doc(..),
-    (<>),
-    char,
-    integer,
-    fsep,
-    hcat,
-    punctuate,
-    text,
-    compact,
-    pretty
+    Doc(..)
+  , (<>)
+  , char
+  , integer
+  , fsep
+  , hcat
+  , punctuate
+  , text
+  , compact
+  , pretty
   ) where
 
 data Doc = Empty
@@ -59,6 +59,7 @@ softline = group line
 group :: Doc -> Doc
 group x = flatten x `Union` x
 
+-- Replaces a Line with a space, turning two lines into one longer line.
 flatten :: Doc -> Doc
 flatten (x `Concat` y) = flatten x `Concat` flatten y
 flatten Line           = Char ' '
