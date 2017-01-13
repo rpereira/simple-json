@@ -1,0 +1,26 @@
+Usage example:
+
+GHCi, version 8.0.1: http://www.haskell.org/ghc/  :? for help
+Prelude> :l JsonParser.hs
+[1 of 1] Compiling JSONParser       ( JsonParser.hs, interpreted )
+Ok, modules loaded: JSONParser.
+*JSONParser> readJson "test.txt"
+Object [("foo",Number 42),("bar",Array [Number 1,Number 2,Bool True,Bool False]),("baz",String "hello world!")]
+*JSONParser> :l PrettyJSON.hs
+[1 of 3] Compiling Prettify         ( Prettify.hs, interpreted )
+[2 of 3] Compiling JSONParser       ( JSONParser.hs, interpreted )
+[3 of 3] Compiling PrettyJSON       ( PrettyJSON.hs, interpreted )
+Ok, modules loaded: JSONParser, PrettyJSON, Prettify.
+*PrettyJSON> let jvalue = renderJSONValue (Object [("foo",Number 42),("bar",Array [Number 1,Number 2,Bool True,Bool False]),("baz",String "hello world!")])
+*PrettyJSON> :t jvalue
+jvalue :: Doc
+*PrettyJSON> putStrLn (compact jvalue)
+{"foo": 42,
+"bar": [1,
+2,
+true,
+false
+],
+"baz": "hello world!"
+}
+*PrettyJSON>
